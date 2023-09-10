@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MBTI 예측</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<h1>MBTI 예측하기</h1>
+	<p>다음 4개의 질문에 대해 Yes 또는 No로 대답해주세요.</p>
+	<form id="quiz-form">
+		<label>1. 나는 새로운 것을 배우는 것을 좋아한다.</label><br>
+		<input type="radio" name="q1" value="E"> Yes
+		<input type="radio" name="q1" value="I"> No<br><br>
+
+		<label>2. 나는 일을 처리하는 것이 빠를수록 좋다.</label><br>
+		<input type="radio" name="q2" value="S"> Yes
+		<input type="radio" name="q2" value="N"> No<br><br>
+
+		<label>3. 나는 말이 적고 조용한 것을 좋아한다.</label><br>
+		<input type="radio" name="q3" value="I"> Yes
+		<input type="radio" name="q3" value="E"> No<br><br>
+
+		<label>4. 나는 타인의 감정에 민감한 편이다.</label><br>
+		<input type="radio" name="q4" value="F"> Yes
+		<input type="radio" name="q4" value="T"> No<br><br>
+
+		<input type="button" value="결과 확인" onclick="showResult()">
+	</form>
+
+	<div id="result" style="display:none;">
+		<h3>당신의 MBTI 유형은 <span id="type"></span>입니다!</h3>
+	</div>
+
+	<script>
+		function showResult() {
+			var answers = document.getElementById("quiz-form").elements;
+			var eCount = 0;
+			var iCount = 0;
+			var sCount = 0;
+			var nCount = 0;
+			var fCount = 0;
+			var tCount = 0;
+			var pCount = 0;
+			var jCount = 0;
+
+			for (var i = 0; i < answers.length; i++) {
+				if (answers[i].checked) {
+					if (answers[i].value == "E") {
+						eCount++;
+					} else if (answers[i].value == "I") {
+						iCount++;
+					} else if (answers[i].value == "S") {
+						sCount++;
+					} else if (answers[i].value == "N") {
+						nCount++;
+					} else if (answers[i].value == "F") {
+						fCount++;
+					} else if (answers[i].value == "T") {
+						tCount++;
+                    } else if (answers[i].value == "P") {
+                    pCount++;
+                    } else if (answers[i].value == "J") {
+                    jCount++;
+                    }
+                    }
+                    }
+        var mbti = "";
+		if (eCount > iCount) {
+			mbti += "E";
+		} else {
+			mbti += "I";
+		}
+		if (sCount > nCount) {
+			mbti += "S";
+		} else {
+			mbti += "N";
+		}
+		if (fCount > tCount) {
+			mbti += "F";
+		} else {
+			mbti += "T";
+		}
+		if (pCount > jCount) {
+			mbti += "P";
+		} else {
+			mbti += "J";
+		}
+
+		document.getElementById("type").innerHTML = mbti;
+		document.getElementById("result").style.display = "block";
+	}
+</script>
+</body>
+</html>
